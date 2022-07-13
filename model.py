@@ -6,6 +6,50 @@ db = SQLAlchemy()
 
 
 # Replace this with your code!
+class User(db.Model):
+    """A user."""
+
+    __tablename__ = "users"
+
+    user_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f'<User user_id={self.user_id} email={self.email}>'
+
+class Movie(db.Model):
+    """A movie."""
+
+    __tablename__ = "movies"
+
+    movie_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    overview = db.Column(db.String(50), unique=True, nullable=False)
+    poster_path = db.Column(db.String(50), nullable=False)
+    release_date = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f'<User movie_id={self.movie_id} title={self.title}>'
+
+class Rating(db.Model):
+    """A user."""
+
+    __tablename__ = "ratings"
+
+    rating_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    
+
+    def __repr__(self):
+        return f'<Rating rating_id={self.rating_id} Score score={self.score}>'
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
