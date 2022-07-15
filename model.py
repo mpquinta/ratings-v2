@@ -17,6 +17,8 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), nullable=False)
 
+    # ratings = a list of Rating objects
+
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
 
@@ -33,11 +35,13 @@ class Movie(db.Model):
     release_date = db.Column(db.String(50), nullable=False)
     title = db.Column(db.String(50), nullable=False)
 
+    # ratings = a list of Rating objects
+
     def __repr__(self):
         return f'<User movie_id={self.movie_id} title={self.title}>'
 
 class Rating(db.Model):
-    """A user."""
+    """A move rating."""
 
     __tablename__ = "ratings"
 
