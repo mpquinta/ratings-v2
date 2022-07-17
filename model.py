@@ -30,10 +30,12 @@ class Movie(db.Model):
     movie_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    overview = db.Column(db.String(50), unique=True, nullable=False)
-    poster_path = db.Column(db.String(50), nullable=False)
-    release_date = db.Column(db.String(50), nullable=False)
-    title = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String)
+    overview = db.Column(db.Text)
+    release_date = db.Column(db.DateTime)
+    poster_path = db.Column(db.String)
+    
+    
 
     # ratings = a list of Rating objects
 
